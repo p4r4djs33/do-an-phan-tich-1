@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View cart</title>
+    <link th:href="@{/css/cart.css}" rel="stylesheet" />
+    <script  src="/js/jquery.js" type ="text/javascript"></script>
+    <script  src="/js/homeDish.js" type ="text/javascript"></script>
+</head>
+<body>
+<div id="top">
+    <div id ="logo">
+        <img src="/pictures2/logo2.png" style="width: 220px ;height: 100px">
+    </div>
+    <div id ="top2">
+        <div id ="menu">
+            <ul>
+                <li><a href="#" title="HOME"><strong>HOME</strong></a></li>
+                <li><a href="#" title="INTRODUCE"><strong>NGUYÊN LIỆU</strong></a></li>
+                <li><a href="#" title="ABOUT"><strong>BẢNG KIỂM</strong></a></li>
+                <li><a href="#" title="MENU"><strong>MENU</strong></a></li>
+                <li><a href="#" title="ENETS"><strong>TRỢ GIÚP</strong></a></li>
+                <li><a href="#" title="CONTACTS"><strong>LIÊN HỆ</strong></a></li>
+                <li><a href="#" title="dangxuat"><strong>ĐĂNG XUẤT</strong></a></li>
+
+
+            </ul>
+        </div>
+        <div id = "abc">
+            <div id ="tk">
+                <div id ="timkiem">
+                    <div class="box">
+                        <input type="text" placeholder="" style="">
+                        <a><i class="fas fa-search-location"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<h1>Date created: <span th:text="${cart.dateCreated}"></span></h1>
+<h1>Name client: <span th:text="${cart.nameClientCreated}"></span></h1>
+<h1>Number contact: <span th:text="${cart.numberContactClientCreated}"></span></h1>
+<h1>Address: <span th:text="${cart.addressClientCreated}"></span></h1>-->
+<!--<a th:href="@{/home/cart/__${id}__/create/dish}"><button>Chọn sản phẩm</button></a></br>-->
+
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<a th:href="@{/admin}"><button>Quay lại danh sách giỏ hàng</button></a>
+<table id="employees" border="2" style="border: black">
+    <thead>
+    <tr>
+        <th>Tên món</th>
+        <th>Số lượng</th>
+        <th>Giá món</th>
+        <th>Thành tiền</th>
+        <th>Ngày</th>
+
+    </tr>
+    </thead>
+    <th:block th:each="dish : *{dishes}">
+        <tr>
+            <td th:text="${dish.name}"></td>
+            <td th:text="${dish.amount}"></td>
+            <td th:text="${dish.price}"></td>
+            <td th:with="variable = ${dish.amount}, controllerVar = ${dish.price}, var = ${variable * controllerVar}" th:text="${var}"></td>
+            <td th:text="${dish.cart.dateCreated}"></td>
+        </tr>
+
+
+    </th:block>
+
+    <!--        <tr>
+                <td>Total: </td>
+                <td th:text="*{#aggregates.sum(dishes.![price*amount])}">23.32</td>
+            </tr>-->
+</table>
+<h4>Tổng tiền hàng của khách là</h4>
+<h4><th:block th:text="*{#aggregates.sum(dishes.![price*amount])}"></th:block></h4>
+<footer>
+    <div id="footer">
+        <div id="ft1">
+            <ul>
+                <h2>Giới thiệu</h2>
+                <a> Hệ thông cửa hàng</a>
+                <a> Khuyến mại</a>
+                <a> Tuyển dụng</a>
+                <a> Liên hệ</a>
+            </ul>
+        </div>
+        <div id="ft2">
+            <img src="/pictures2/face.png" style="width: 20px; height: 20px">
+            <img src="/pictures2/ims.png" style="width: 20px; height: 20px">
+            <img src="/pictures2/tw.jpg" style="width: 20px; height: 20px">
+            <img src="/pictures2/za.webp" style="width: 20px; height: 20px">
+            <img src="/pictures2/you.png" style="width: 20px; height: 20px">
+            <img src="/pictures2/gg.png" style="width: 20px; height: 20px">
+            <img src="/pictures2/ggm.png" style="width: 20px; height: 20px">
+        </div>
+    </div>
+</footer>
+</body>
+</html>
