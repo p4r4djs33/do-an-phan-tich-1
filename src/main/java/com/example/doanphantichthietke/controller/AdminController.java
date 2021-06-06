@@ -33,7 +33,7 @@ public class AdminController {
     //-----HOME PAGE
     @GetMapping("/admin")
     public String index(Model model) {
-        model.addAttribute("Carts", cartService.findAll());
+        model.addAttribute("Carts", cartService.findAllOrderByDate());
         return "Admin/Cart/list";
     }
 

@@ -31,4 +31,9 @@ public class CartServiceImpl implements CartService {
     public void remove(Long id) {
         cartRepository.deleteById(id);
     }
+
+    @Override
+    public Iterable<Cart> findAllOrderByDate() {
+        return cartRepository.findAllOrderByDate();
+    }
 }
